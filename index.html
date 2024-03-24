@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, inital-scale=1">
+    <title> To-Do List App</title>
+    <link rel="stylesheet" href="style.css">
+    </meta>
+</head>
+< <body>
+    <div class="container">
+        <div class="todo-app">
+            <h2>To-Do List <img src="images/icon.png"> </h2>
+            <div class="row">
+                <div class="circle" id="circle" onclick="todayButton()"></div>
+                <div class="circle101" id="circle101"></div>
+                <input type="text" id="input-box" placeholder="Add Your To-Do">
+                <button onclick="createTask()">Add Your Next Task</button>
+            </div>
+            <div class="today">
+                <h4>Today</h4>
+            </div>
+            <ul id="today-list">
+            </ul>
+            <div class="upcoming">
+                <h4>Upcoming</h4>
+            </div>
+            <ul id="upcoming-list">
+            </ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    </body>
+
+</html>

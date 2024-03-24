@@ -1,0 +1,72 @@
+const userInput = document.getElementById("input-box");
+const upcomingContainer = document.getElementById("upcoming-list");
+const todayContainer = document.getElementById("today-list");
+const today = document.getElementById("circle");
+var todayElement = document.getElementById("today");
+var upcomingElement = document.getElementById("upcoming");
+
+window.onload = function() {
+    showTask();
+}
+
+function todayButton() {
+    today.classList.toggle("clicked");
+}
+
+
+function createTask() {
+    if (userInput.value === '') {
+        alert("To-Do shouldn't be empty!");
+    } else if (today.classList.contains("clicked")) {
+        let addValue = document.createElement("li");
+        addValue.innerHTML = userInput.value;
+        todayContainer.appendChild(addValue);
+        let closeButton = document.createElement("span");
+        closeButton.innerHTML = "\u00d7";
+        addValue.appendChild(closeButton);
+    } else {
+        let addValue = document.createElement("li");
+        addValue.innerHTML = userInput.value;
+        upcomingContainer.appendChild(addValue);
+        let closeButton = document.createElement("span");
+        closeButton.innerHTML = "\u00d7";
+        addValue.appendChild(closeButton);
+    }
+    userInput.value = "";
+    saveData();
+}
+
+upcomingContainer.addEventListener("click", function(e){
+    if(e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+        saveData();
+    }
+    else if(e.target.tagName === "SPAN"){
+        e.target.parentElement.remove();
+        saveData();
+    }
+}, false);
+
+todayContainer.addEventListener("click", function(e){
+    if(e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+        saveData();
+    }
+    else if(e.target.tagName === "SPAN"){
+        e.target.parentElement.remove();
+        saveData();
+    }
+}, false);
+
+
+function saveData() {
+    localStorage.setItem("data", upcomingContainer.innerHTML);
+    localStorage.setItem("tdyData", todayContainer.innerHTML);
+}
+
+function showTask(){
+   
+    upcomingContainer.innerHTML = localStorage.getItem("data");
+    // todayContainer.innerHTML = localStorage.getItem("tdyData");
+}
+
